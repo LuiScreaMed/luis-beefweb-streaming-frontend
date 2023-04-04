@@ -25,3 +25,4 @@
     webui/src/configs/netease_cloud_music.js
     ```
     修改对应的链接。**如果不使用以上的项目，将无法完全复原和我相同的界面。**
+3. 项目中使用与后端的Websocket连接进行转场通讯，后端项目尚未上传。

@@ -1,3 +1,11 @@
+/*
+ * @Author: LuiScreaMed lui5@qq.com
+ * @LastEditTime: 2023-04-05 02:42:45
+ * Copyright (c) 2023 by LuiScreaMed
+ * MIT Licensed
+ * @Description: websocket client model
+ */
+
 import EventEmitter from "wolfy87-eventemitter"
 
 const transitionState = Object.freeze({
@@ -10,54 +18,67 @@ export default class WebsocketModel extends EventEmitter {
         super();
         this.defineEvent('onObsTransition');
 
-        this.path = 'ws://192.168.1.100:3004';
-        this.socket = null;
-        this.timer = null;
+        this.path = 'ws://localhost:3001';
+        this.ws = null;
+        this.interval = null;
         this.state = transitionState.in;
     }
 
     start() {
-        this.timer = setInterval(() => {
-            this.state = this.state == transitionState.in ? this.state = transitionState.out : this.state = transitionState.in;
-            this.emit('change');
-        }, 5000)
-        // if (typeof (Websocket) === 'undefined') {
-        //     return;
-        // }
-        // this.socket = new Websocket(this.path);
-        // this.socket.onopen = this.open;
-        // this.socket.onerror = this.error;
-        // this.socket.onmessage = this.message;
-    }
-
-    open() {
-        console.log('ws连接成功');
-    }
-
-    error() {
-        console.log("ws连接出错");
-    }
-
-    setTimer(callback) {
-        if (this.timer) {
-            clearTimeout(this.timer);
-            this.timer = null;
+        this.ws = new WebSocket(this.path);
+        this.ws.onmessage = (event) => {
+            try {
+                let data = JSON.parse(event.data);
+                // console.log(data);
+                this.handleMessage(data);
+            } catch (e) { console.error(e) }
         }
-        this.timer = setTimeout(() => {
-            clearTimeout(this.timer);
-            this.timer = null;
+        this.ws.onopen = () => this.onOpen();
+        this.ws.onclose = () => this.onClose();
+    }
+
+    onOpen() {
+        console.log("ws连接成功");
+        this.interval = setInterval(() => {
+            this.ws.send('{"type": "ping"}');
+        }, 10000);
+    }
+
+    onClose() {
+        console.log("ws连接断开");
+        clearInterval(this.interval);
+        this.interval = null;
+        this.ws = null;
+        this.setTimer(() => this.start(), 5000);
+    }
+
+    handleMessage(data) {
+        if (data.type === undefined) return;
+        switch (data.type) {
+            case "action": {
+                this.handleAction(data);
+                break;
+            }
+        }
+    }
+
+    handleAction(data) {
+        if (data.data === undefined) return;
+        switch (data.data) {
+            case "transition": {
+                this.state = transitionState.out
+                this.emit('change');
+                this.setTimer(() => { this.state = transitionState.in; this.emit('change') }, 3000);
+                break;
+            }
+        }
+    }
+
+    setTimer(callback, time) {
+        let timer = setTimeout(() => {
+            clearTimeout(timer);
+            timer = null;
             callback();
-        }, 1000)
-    }
-
-    message(msg) {
-        console.log(msg.data);
-        let arr = msg.data.split("=");
-        let param = arr[1];
-        if (param == "obsTransition") {
-            this.state = transitionState.out
-            this.emit('change');
-            this.setTimer(() => { this.state = transitionState.in; this.emit('change') });
-        }
+        }, time)
     }
 }

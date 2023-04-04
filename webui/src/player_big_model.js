@@ -1,6 +1,6 @@
 /*
  * @Author: LuiScreaMed lui5@qq.com
- * @LastEditTime: 2023-04-04 23:44:59
+ * @LastEditTime: 2023-04-05 02:04:32
  * Copyright (c) 2023 by LuiScreaMed
  * MIT Licensed
  * @Description: player list model 
@@ -8,7 +8,7 @@
 
 import EventEmitter from 'wolfy87-eventemitter';
 import axios from 'axios';
-import baseUrl from './configs/netease_cloud_music';
+import baseUrl from './configs/netease_cloud_music.js';
 
 const playerInfo = Object.freeze({
     title: '-|==|无音乐',

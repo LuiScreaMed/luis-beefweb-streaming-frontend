@@ -137,8 +137,8 @@ function configRelease(config) {
 }
 
 function makeBuildParams(env) {
-    const buildType = env.release ? 'release' : 'debug';
-    // const buildType = env.release ? 'debug' : 'release';
+    // const buildType = env.release ? 'release' : 'debug';
+    const buildType = env.release ? 'debug' : 'release';
     const enableTests = !!env.tests;
     const analyze = !!env.analyze;
 
