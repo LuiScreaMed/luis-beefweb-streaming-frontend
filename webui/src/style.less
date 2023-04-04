@@ -676,11 +676,15 @@ iframe {
     transition: all 1.5s;
 
     &.in {
-        animation: infinite danmaku-breathe 5s, forwards game-danmaku-in 1.5s;
+        animation: forwards game-danmaku-in 1.5s;
     }
 
     &.out {
-        animation: infinite danmaku-breathe 5s, forwards game-danmaku-out 1.5s;
+        animation: forwards game-danmaku-out 1.5s;
+    }
+
+    .inner {
+        animation: infinite danmaku-breathe 5s;
     }
 }
 
@@ -716,11 +720,15 @@ iframe {
     transition: all 1.5s;
 
     &.in {
-        animation: infinite danmaku-breathe 5s, forwards chat-danmaku-in 1.5s;
+        animation: forwards chat-danmaku-in 1.5s;
     }
 
     &.out {
-        animation: infinite danmaku-breathe 5s, forwards chat-danmaku-out 1.5s;
+        animation: forwards chat-danmaku-out 1.5s;
+    }
+
+    .inner {
+        animation: infinite danmaku-breathe 5s;
     }
 }
 
@@ -750,15 +758,15 @@ iframe {
 
 @keyframes danmaku-breathe {
     0% {
-        translate: 0 0;
+        transform: translate(0, 0px);
     }
 
     50% {
-        translate: 0 16px;
+        transform: translate(0, 16px);
     }
 
     100% {
-        translate: 0 0;
+        transform: translate(0, 0px);
     }
 }
 

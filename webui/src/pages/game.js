@@ -1,6 +1,6 @@
 /*
  * @Author: LuiScreaMed lui5@qq.com
- * @LastEditTime: 2023-04-04 23:40:36
+ * @LastEditTime: 2023-04-05 02:57:40
  * Copyright (c) 2023 by LuiScreaMed
  * MIT Licensed
  * @Description: page for displaying monitor while streaming
@@ -37,7 +37,9 @@ class Game extends React.PureComponent {
                 <ProgressBackground type="game" playerModel={this.playerModel}></ProgressBackground>
                 <PlayerSmall playerBigModel={this.playerBigModel}></PlayerSmall>
                 <div className={`game-danmaku ${this.state.transitionState}`}>
-                    <DanmakuMain ></DanmakuMain>
+                    <div className="inner">
+                        <DanmakuMain></DanmakuMain>
+                    </div>
                 </div>
             </div>
         )

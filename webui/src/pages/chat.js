@@ -1,6 +1,6 @@
 /*
  * @Author: LuiScreaMed lui5@qq.com
- * @LastEditTime: 2023-04-04 23:39:56
+ * @LastEditTime: 2023-04-05 02:57:20
  * Copyright (c) 2023 by LuiScreaMed
  * MIT Licensed
  * @Description: page for chatting while streaming
@@ -40,7 +40,9 @@ class Chat extends React.PureComponent {
                 <ProgressBackground opacity="0.5" type="chat" playerModel={this.playerModel}></ProgressBackground>
                 <PlayerSmall playerBigModel={this.playerBigModel}></PlayerSmall>
                 <div className={`chat-danmaku ${this.state.transitionState}`}>
-                    <DanmakuMain ></DanmakuMain>
+                    <div className="inner">
+                        <DanmakuMain></DanmakuMain>
+                    </div>
                 </div>
             </div>
         )
