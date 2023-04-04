@@ -19,7 +19,7 @@
 ---
 ### 注意事项
 1. 项目使用 [beefweb](https://github.com/hyperblast/beefweb) 和 [foobar2000](https://foobar2000.org/) 作为基本的音乐交互，**如果没有安装 foobar2000 和 beefweb 插件，将无法收到音乐信息。**
-2. 项目中包含对 [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi) 和 [blivechat](https://github.com/DoodleBears/blivechat) 的引用/请求。如有需要请提前架设开启对应的服务器，并在本项目中的
+2. 项目中包含对 [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi) 和 [blivechat](https://github.com/DoodleBears/blivechat) 的引用/请求。（使用 NeteaseCloudMusicApi 获取音乐封面 / 使用 blivechat 展示弹幕）如有需要请提前架设开启对应的服务器，并在本项目中的
     ```
     webui/src/configs/blivechat.js
     webui/src/configs/netease_cloud_music.js
