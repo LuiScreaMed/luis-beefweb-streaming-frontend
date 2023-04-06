@@ -1,4 +1,4 @@
-# luis-beefweb-streaming-frontend
+# luis_beefweb_streaming_frontend
 基于beefweb前端源码修改的直播用前端界面。
 
 [beefweb](https://github.com/hyperblast/beefweb) 是一款用于实现 [foobar2000](https://foobar2000.org/) 和 [DeaDBeeF](https://deadbeef.sourceforge.io/) 播放器的远程交互的插件。
