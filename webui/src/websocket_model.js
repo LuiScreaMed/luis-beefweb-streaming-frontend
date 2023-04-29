@@ -1,6 +1,6 @@
 /*
  * @Author: LuiScreaMed lui5@qq.com
- * @LastEditTime: 2023-04-05 02:42:45
+ * @LastEditTime: 2023-04-18 22:48:01
  * Copyright (c) 2023 by LuiScreaMed
  * MIT Licensed
  * @Description: websocket client model
@@ -38,14 +38,14 @@ export default class WebsocketModel extends EventEmitter {
     }
 
     onOpen() {
-        console.log("ws连接成功");
+        // console.log("ws连接成功");
         this.interval = setInterval(() => {
             this.ws.send('{"type": "ping"}');
         }, 10000);
     }
 
     onClose() {
-        console.log("ws连接断开");
+        // console.log("ws连接断开");
         clearInterval(this.interval);
         this.interval = null;
         this.ws = null;
